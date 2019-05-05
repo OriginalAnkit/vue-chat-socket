@@ -6,20 +6,22 @@ var connectionOptions = {
 };
 var socket = io.connect('http://localhost:3000', connectionOptions);
 
+var numberOfUser = 0;
+var users = []; 
+
+socket.on('numberOfActiveUsers',  (num)=> {
+    console.log("++++++", num)
+    
+    numberOfUser = num.numberOfUser;
+    console.log('----->', numberOfUser)
+})
 
 export default{
     joinChat:(name)=>{
       socket.emit('newUser',name);
     },
-    numUser:()=>{
-        return 1
-    }
+    numUser:numberOfUser
 }
 
-var numberOfUser = 0;
-var users = [];
+
  
-socket.on('numberOfActiveUsers',function (num) {
-    this.numberOfUser = num.numberOfUser;
-    console.log('----->',this.numberOfUser)
-})

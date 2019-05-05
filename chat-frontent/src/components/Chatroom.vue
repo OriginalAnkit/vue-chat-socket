@@ -32,9 +32,8 @@ export default {
   props: ["name"],
   methods: {},
   created(){
-      setTimeout(() => {
-          this.num=this.socketService.numUser();
-      }, 2000);
+          this.num=socketService.numUser;
+          console.log(this.num,socketService)
   }
 };
 </script>
